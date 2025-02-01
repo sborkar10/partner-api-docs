@@ -1,0 +1,143 @@
+post:
+  tags:
+    - emergency response
+  summary: Emergency Dispatch Service
+  description: This API is used to Dispatch for Emergency Services
+  operationId: createAlarm
+  parameters:
+    - $ref: '../headers/oauth-api-key.yaml'
+    - $ref: '../headers/oauth-user-id.yaml'
+    - $ref: '../headers/partner-id.yaml'
+    - $ref: '../headers/x-transaction-id.yaml'
+    - $ref: '../pathParam/userId.yaml'
+
+  requestBody:
+    description: JSON payload for the api request
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/CreateAlarmRequest'
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreateAlarmResponse'
+
+delete:
+  tags:
+    - emergency response
+  summary: Cancel Emergency Dispatch Service
+  description: This API is used to Cancel the Dispatch for Emergency Services
+  operationId: cancelAlarm
+  parameters:
+    - $ref: '../headers/oauth-api-key.yaml'
+    - $ref: '../headers/oauth-user-id.yaml'
+    - $ref: '../headers/partner-id.yaml'
+    - $ref: '../headers/x-transaction-id.yaml'
+    - $ref: '../pathParam/userId.yaml'
+
+  requestBody:
+    description: JSON payload for the api request
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/CancelAlarmRequest'
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CancelAlarmResponse'
+
+
+components:
+  schemas:
+    CreateAlarmRequest:
+      description: Create Alarm Request
+      required: true
+      type: object
+      properties:
+        ownerId:
+          type: string
+          example: "DEV-121-1341234"
+          description: owner id
+        serviceTypes:
+          type: string
+#          type: array
+#          items:
+#            type: string
+          example: "FIRE"
+          description: FIRE | POLICE | MEDICAL
+        triggeredByType:
+          type: string
+          example: "PERSON"
+          description: DEVICE | PERSON
+        triggeredBy:
+          type: string
+          example: "DEV-313-4524353"
+          description: Person who initiated the alarm ( Could be friend/admin friend )
+        location:
+          $ref: "#/components/schemas/Location"
+        owner:
+          $ref: '../common/components.yaml#/components/schemas/Contact'
+#        initiator:
+#          $ref: '../common/components.yaml#/components/schemas/Contact'
+        triggeredByDevice:
+          $ref: '../common/components.yaml#/components/schemas/TriggeredByDevice'
+        emergencyContacts:
+          type: array
+          items:
+            $ref: '../common/components.yaml#/components/schemas/Contact'
+        locationInfo:
+          $ref: '../common/components.yaml#/components/schemas/LocationInfo'
+    Location:
+      type: object
+      properties:
+        address:
+          $ref: '../common/components.yaml#/components/schemas/Address'
+        coordinates:
+          $ref: '../common/components.yaml#/components/schemas/Coordinates'
+
+    CreateAlarmResponse:
+      type: object
+      properties:
+        status:
+          $ref: '../common/components.yaml#/components/schemas/Status'
+        data:
+          $ref: '#/components/schemas/AlarmDetails'
+    AlarmDetails:
+      type: object
+      properties:
+        alarmId:
+          type: string
+          example: "b7cab08a-90c2-43c0-9045-9f98e0bc4e74"
+
+    CancelAlarmRequest:
+      description: Cancel Alarm Request
+      required: true
+      type: object
+      properties:
+        alarmId:
+          type: string
+          description: alarm id to cancel
+          example: 12345678-abcd-1234-abcd-1234567890ab
+        alarmOwnerId:
+          type: string
+          description: alarm owner id
+          example: "DEV-121-1341234"
+        cancelPerson:
+          $ref: '../common/components.yaml#/components/schemas/Contact'
+        statusUpdatedClientName:
+          type: string
+          description:
+
+    CancelAlarmResponse:
+      type: object
+      properties:
+        status:
+          $ref: '../common/components.yaml#/components/schemas/Status'

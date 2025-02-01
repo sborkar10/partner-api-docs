@@ -1,0 +1,46 @@
+openapi: 3.0.0
+info:
+  title: Arlo API's
+  description: Optional multiline or single-line description in [CommonMark](http://commonmark.org/help/) or HTML.
+  version: 1.0.0
+  contact:
+    name: API Support
+    email: support@example.com
+    url: http://example.com/support
+
+servers:
+  - url: http://mygoldendev.arlo.com
+    description: Optional server description, e.g. Main (production) server
+  - url: http://api.arlo.com
+    description: Optional server description, e.g. Main (production) server
+  - url: http://staging-api.arlo.com
+    description: Optional server description, e.g. Internal staging server for testing
+tags:
+  - name: Arlo Partner APIs
+    description: Everything Arlo Partner APIs
+
+
+security:
+  - api_key: [ ]
+
+paths:
+  ### API - REGISTER USER ACCOUNT ###
+  /api/v1/user/register:
+    $ref: './account/register.yaml'
+  ### API - ONBOARD DEVICES ###
+  /user/devices/onboard:
+    $ref: './userdevices/onboarddevice.yaml'
+  ### API - Emergency Dispatch  ###
+  /api/v1/users/{user_id}/features/dispatch:
+    $ref: './emergencydispatch/alarm.yaml'
+  ### API - FEEDS ###
+  /feeds:
+    $ref: './feeds/feeds.yaml'
+
+components:
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header
+

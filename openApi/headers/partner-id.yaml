@@ -1,0 +1,6 @@
+name: partnerId
+required: true
+in: header
+description: Partner ID
+schema:
+  type: string

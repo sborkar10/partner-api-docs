@@ -1,0 +1,7 @@
+name: OAuth-User-Id
+required: true
+in: header
+description: User identifier
+schema:
+  type: string
+  default: DEV-121-1341234

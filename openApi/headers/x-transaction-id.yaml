@@ -1,0 +1,7 @@
+name: x-transaction-id
+required: false
+in: header
+description: Used to uniquely track that transaction, installation or other business event.
+schema:
+  type: string
+  example: ''

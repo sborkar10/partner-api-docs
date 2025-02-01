@@ -1,0 +1,8 @@
+name: customerInitiated
+required: false
+in: header
+description: Customer initiated header
+schema:
+    type: boolean
+    example: true
+    default: false

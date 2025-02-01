@@ -1,0 +1,33 @@
+components:
+  schemas:
+    RegisterUserAccountResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: object
+          properties:
+            userId:
+              type: string
+              example: XYZ-123-12345
+            closeAccountCode:
+              type: string
+              example: 1234ABC
+            countryCode:
+              type: string
+              example: US
+#            email:
+#              type: string
+#              example: john.doe@arlo.com
+            dateCreated:
+              type: integer
+              format: int64
+              example: 123123123
+            externalPartnerId:
+              type: string
+              example: PartnerA
+#            token:
+#              type: string
+#              example: "eyJhbGciOi"

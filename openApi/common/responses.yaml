@@ -1,0 +1,17 @@
+components:
+  schemas:
+    BadRequest:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        data:
+          type: object
+          properties:
+            code:
+              type: integer
+              example: 2001
+            message:
+              type: string
+              example: "Request validation error"

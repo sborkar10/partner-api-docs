@@ -1,0 +1,31 @@
+post:
+  tags:
+    - users
+  summary: Register Partner User
+  description: This API is used to register a new partner user
+  operationId: registerUser
+  parameters:
+    - $ref: '../headers/partner-id.yaml'
+    - $ref: '../headers/accept-language.yaml'
+
+  requestBody:
+    description: JSON payload for the api request
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: './components/request.yaml#/components/schemas/RegisterUserAccountRequest'
+  responses:
+    "200": # status code
+      description: A JSON object with user information
+      content:
+        application/json:
+          schema:
+            $ref: './components/response.yaml#/components/schemas/RegisterUserAccountResponse'
+
+    "400":
+      description: A JSON object with error message details
+      content:
+        application/json:
+          schema:
+            $ref: '../common/responses.yaml#/components/schemas/BadRequest'

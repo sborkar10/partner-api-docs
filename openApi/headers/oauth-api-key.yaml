@@ -1,0 +1,6 @@
+name: OAuth-Api-Key
+required: true
+in: header
+description: Partner API key
+schema:
+  type: string

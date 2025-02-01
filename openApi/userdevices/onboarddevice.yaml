@@ -1,0 +1,53 @@
+    post:
+      tags:
+        - devices
+      summary: Onboard a new device
+      description: This API is used to onboard a new device.
+      operationId: onboardDevice
+      parameters:
+        - $ref: '../headers/authorization.yaml'
+        - $ref: '../headers/content-type.yaml'
+        - $ref: '../headers/partner-api-key.yaml'
+        - $ref: '../headers/x-transaction-id.yaml'
+        - $ref: '../headers/partner-id.yaml'
+
+      requestBody:
+        description: JSON payload for device onboarding
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                device-sn:
+                  type: string
+                device-mac:
+                  type: string
+                  example: false
+                device-bcert-uuid:
+                  type: string
+                onboarding-key:
+                  type: string
+                  example: 123456
+                onboarding-state:
+                  type: string
+                  example: discover/claim
+
+      responses:
+        "200": # status code
+          description: A JSON object with user devices list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      deviceId:
+                        type: string
+                      state:
+                        type: string

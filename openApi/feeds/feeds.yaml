@@ -1,0 +1,99 @@
+post:
+    tags:
+      - feeds
+    summary: Get feeds/library data
+    description: This API is used to get feeds/library data.
+    operationId: feeds
+    parameters:
+      - $ref: '../headers/authorization.yaml'
+      - $ref: '../headers/content-type.yaml'
+      - $ref: '../headers/partner-api-key.yaml'
+      - $ref: '../headers/x-transaction-id.yaml'
+      - $ref: '../headers/partner-id.yaml'
+
+    requestBody:
+      description: JSON payload for the api request
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              startTime (required):
+                type: integer
+                example: Start epoch
+              endTime (required):
+                type: integer
+                example: End epoch
+              devices (optional):
+                type: array
+                items:
+                  type: string
+    responses:
+      "200": # status code
+        description: A JSON object with feeds data
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                  example: true
+                data:
+                  type: object
+                  properties:
+                    startTime:
+                      type: integer
+                    endTime:
+                      type: integer
+                    feeds:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            format: int64
+                          deviceId:
+                            type: string
+                          deviceName:
+                            type: string
+                          eventTime:
+                            type: integer
+                            format: epoch
+                          tnail:
+                            type: string
+                            example: url
+                          videoUrl:
+                            type: string
+                            example: url
+                          eventMetaData:
+                            type: object
+                            properties:
+                              eventTrigger:
+                                type: string
+                                example: motion
+                              smartDetection:
+                                type: string
+                                example: person, vehicle, animal
+
+      "401":
+        description: A JSON object with error message details
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                  example: false
+                data:
+                  type: object
+                  properties:
+                    code:
+                      type: integer
+                      example: 2001
+                    message:
+                      type: string
+                      example: "Request validation error"

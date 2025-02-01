@@ -1,0 +1,8 @@
+name: Accept-Language
+required: false
+in: header
+description: Accept-Language header
+schema:
+    type: string
+    example: 'en'
+    default: 'en'

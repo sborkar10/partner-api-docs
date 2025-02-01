@@ -1,0 +1,7 @@
+name: Authorization
+required: true
+in: header
+description: Partner oauth token
+schema:
+    type: string
+    example: 'Bearer <partner oauth token>'

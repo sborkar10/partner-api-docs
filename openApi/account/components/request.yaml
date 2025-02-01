@@ -1,0 +1,30 @@
+components:
+  schemas:
+    RegisterUserAccountRequest:
+      required:
+        - countryCode
+        - externalUserId
+      type: object
+      properties:
+        email:
+          pattern: ^(?!.{191})[\w!#$%&'*+/=?`{|}~^-]+(?:\.[\w!#$%&'*+/=?`{|}~^-]+)*@?(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}$
+          type: string
+          example: "john.doe@arlo.com"
+        firstName:
+          type: string
+          example: "John"
+        lastName:
+          type: string
+          example: "Doe"
+        agreePrivacyPolicy:
+          type: boolean
+          example: true
+        agreeTos:
+          type: boolean
+          example: false
+        countryCode:
+          type: string
+          example: "US"
+        externalUserId:
+          type: string
+          example: "USER1234"

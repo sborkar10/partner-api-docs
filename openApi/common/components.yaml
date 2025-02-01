@@ -1,0 +1,103 @@
+components:
+  schemas:
+    Status:
+      required:
+        - success
+      type: object
+      properties:
+        success:
+          type: boolean
+          default: true
+        errorCode:
+          type: string
+          example: "12002"
+        errorMessage:
+          type: string
+          example: "Invalid Request"
+
+    Contact:
+      type: object
+      properties:
+        phone:
+          type: string
+          example: "+19453891833"
+        firstName:
+          type: string
+          example: "ownerFirstName"
+        lastName:
+          type: string
+          example: "ownerLastName"
+
+    Coordinates:
+      type: object
+      properties:
+        lat:
+          type: number
+          example: 37.7749
+        lng:
+          type: number
+          example: -122.4194
+        accuracy:
+          type: number
+          example: 10
+
+    Address:
+      type: object
+      properties:
+        line1:
+          type: string
+          example: "1234 Main St"
+        line2:
+          type: string
+          example: "Apt 123"
+        city:
+          type: string
+          example: "San Jose"
+        state:
+          type: string
+          example: "CA"
+        zip:
+          type: string
+          example: "95134"
+        countryCode:
+          type: string
+          example: "US"
+
+    TriggeredByDevice:
+      type: object
+      properties:
+        triggeredByReason:
+          type: string
+          description: MOTION | ACCESS_OPEN | WATER_LEAK | SMOKE | CO
+          example: SMOKE
+        deviceType:
+          type: string
+          description: "Device type: SENSOR | CAMERA | HUB"
+          example: CAMERA
+        deviceName:
+          type: string
+          description: Device name
+          example: KitchenCam
+        deviceId:
+          type: string
+          description: Device id
+          example: A9M1257TA0239
+        modelId:
+          type: string
+          description: Model id
+          example: VMC4060A
+
+    LocationInfo:
+      type: object
+      properties:
+        accessInstructions:
+          type: string
+          example: "Ground floor"
+          description: "Building access instructions: access code, etc"
+        propertyType:
+          type: string
+          example: RESIDENTIAL
+          description: Building property type ( RESIDENTIAL | COMMERCIAL )
+#        buildingType:
+#          type: string
+#          description: Building type
