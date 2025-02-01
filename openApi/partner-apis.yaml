@@ -11,6 +11,8 @@ info:
 servers:
   - url: http://mygoldendev.arlo.com
     description: Optional server description, e.g. Main (production) server
+  - url: http://partner-platform-goldendev.arlocloud.com
+    description: Optional server description, e.g. Main (production) server
   - url: http://api.arlo.com
     description: Optional server description, e.g. Main (production) server
   - url: http://staging-api.arlo.com
